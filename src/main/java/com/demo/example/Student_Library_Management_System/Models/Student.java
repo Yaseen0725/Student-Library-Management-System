@@ -22,7 +22,7 @@ public class Student {
     private String mob;
 
     @Column(nullable = true)
-    private Integer dob;
+    private String dob;
 
     @Column(nullable = true)
     private String gender;

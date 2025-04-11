@@ -1,4 +1,4 @@
-package com.demo.example.Student_Library_Management_System.RequestDTO;
+package com.demo.example.Student_Library_Management_System.RequestDTOs;
 
 import com.demo.example.Student_Library_Management_System.Models.Book;
 import com.demo.example.Student_Library_Management_System.Models.Card;
