@@ -1,5 +1,6 @@
 package com.demo.example.Student_Library_Management_System.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -29,10 +30,12 @@ public class Transaction {
     @Column(nullable = false)
     private String issuedOrReturn;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn
     private Card card;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn
     private Book book;

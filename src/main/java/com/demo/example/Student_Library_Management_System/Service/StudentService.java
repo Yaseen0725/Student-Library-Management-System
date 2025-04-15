@@ -8,6 +8,9 @@ import com.demo.example.Student_Library_Management_System.RequestDTOs.StudentReq
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class StudentService {
     @Autowired
@@ -23,5 +26,15 @@ public class StudentService {
 
         studentRepository.save(student);
         return "Student added successfully";
+    }
+
+    public Student getStudentById(int id){
+        Optional<Student> studentOptional =  studentRepository.findById(id);
+        return studentOptional.get();
+    }
+
+    public List<Student> getAllStudents(){
+        List<Student> studentList = studentRepository.findAll();
+        return studentList;
     }
 }

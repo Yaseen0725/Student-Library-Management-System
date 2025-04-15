@@ -1,5 +1,7 @@
 package com.demo.example.Student_Library_Management_System.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,13 +28,16 @@ public class Card {
     @Column(nullable = false)
     private String cardStatus;
 
+    @JsonBackReference
     @OneToOne
     @JoinColumn
     private Student student;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
     private List<Book> bookIssuedToCards = new ArrayList<>();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
     private List<Transaction> transactionIssuedToCard = new ArrayList<>();
 }
