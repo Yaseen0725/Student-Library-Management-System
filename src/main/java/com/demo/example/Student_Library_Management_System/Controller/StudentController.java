@@ -38,4 +38,16 @@ public class StudentController {
         String response = studentService.countStudents();
         return response;
     }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteStudentById(@PathVariable int id){
+        String response =  studentService.deleteStudentById(id);
+        return response;
+    }
+
+    @PutMapping("/update/{id}")
+    public String updateStudentById(@PathVariable int id, @RequestBody StudentRequestDTO studentRequestDTO){
+        String response = studentService.updateStudent(id, studentRequestDTO);
+        return response;
+    }
 }

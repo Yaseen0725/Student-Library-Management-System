@@ -7,6 +7,8 @@ import com.demo.example.Student_Library_Management_System.Repository.StudentRepo
 import com.demo.example.Student_Library_Management_System.RequestDTOs.StudentRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,5 +43,26 @@ public class StudentService {
     public String countStudents(){
         long count = studentRepository.count();
         return "Total number of students present are : " + count;
+    }
+
+    public String deleteStudentById(int id){
+        studentRepository.deleteById(id);
+        return "Student with id " + id + " got deleted";
+    }
+
+    public String updateStudent(int id, StudentRequestDTO studentRequestDTO){
+        Student student = getStudentById(id);
+        if(student != null) {
+            student.setName(studentRequestDTO.getName());
+            student.setGender(studentRequestDTO.getGender());
+            student.setEmail(studentRequestDTO.getEmail());
+            student.setDob(studentRequestDTO.getDob());
+            student.setDept(studentRequestDTO.getDept());
+            student.setMob(studentRequestDTO.getMob());
+            studentRepository.save(student);
+            return "Student updated successfully";
+        }else{
+            return "Student cannot be updated";
+        }
     }
 }
