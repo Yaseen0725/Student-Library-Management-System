@@ -6,10 +6,10 @@ import com.demo.example.Student_Library_Management_System.Models.Student;
 import com.demo.example.Student_Library_Management_System.Repository.StudentRepository;
 import com.demo.example.Student_Library_Management_System.RequestDTOs.StudentRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -64,5 +64,11 @@ public class StudentService {
         }else{
             return "Student cannot be updated";
         }
+    }
+
+    public List<Student> getStudentsBasedOnPage(int pageNo, int pageSize){
+        Page<Student> studentPage = studentRepository.findAll(PageRequest.of(pageNo, pageSize, Sort.by("name").ascending()));
+        List<Student> studentList = studentPage.getContent();
+        return studentList;
     }
 }

@@ -50,4 +50,10 @@ public class StudentController {
         String response = studentService.updateStudent(id, studentRequestDTO);
         return response;
     }
+
+    @GetMapping("/findByPage")
+    public List<Student> findStudentBasedOnPage(@RequestParam int pageNo, @RequestParam int pageSize){
+        List<Student> studentList = studentService.getStudentsBasedOnPage(pageNo, pageSize);
+        return studentList;
+    }
 }
